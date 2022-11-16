@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/16 14:32:37 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:55:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,25 @@
 # include <math.h>
 # include <stdio.h> //delet
 
-typedef struct s_data {
+# define WIDTH 800
+# define HEIGHT 800
+
+typedef struct s_img
+{
+    void    *mlx_img;
+    char    *addr;
+    int     bpp;
+    int     line_len;
+    int     endian;
+}   t_img;
+
+typedef struct s_data
+{
     void    *mlx_ptr;
     void    *win_ptr;
+    int     win_width;
+    int     win_height;
+    t_img   img;
 }   t_data;
-
-int handle_input(int key, t_data *data);
-int handle_no_event(void *data);
 
 #endif
