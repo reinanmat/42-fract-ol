@@ -6,24 +6,25 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/11/16 15:46:42 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/17 16:59:27 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libfractal
 
-SRCS = srcs/main.c
+SRCS = $(addprefix srcs/, main.c plotline.c)
 
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
+LIBXFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-
-$(OBJS): 
-	cc $(CFLAGS) -I includes/fractal.h $(SRCS) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz -o fractal
+$(NAME): $(OBJS) 
+	
+$(OBJS): $(SRCS)
+	cc $(CFLAGS) -I includes/fractal.h $(SRCS) $(LIBXFLAGS) -o fractal
 
 run:
 	./fractal
