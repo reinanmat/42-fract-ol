@@ -6,17 +6,17 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/21 18:17:06 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:32:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int mouse(int x, int y)
+int	mouse(int x, int y)
 {
-    printf("x: %i\n", x);
-    printf("y: %i\n", y);
-    return (0);
+	printf("x: %i\n", x);
+	printf("y: %i\n", y);
+	return (0);
 }
 
 void	img_pix_put(t_img *img, int x, int y, int color)
@@ -27,42 +27,44 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-void	ft_mandelbrot(t_img *img)
+void	set_mandelbrot(int x, int y, int color, t_img *img)
 {
-    int x;
-    int y;
-    double x0;
-    double y0;
-    int i;
-    double  xx;
-    double  yy;
-    double  xtemp;
-    int max_i;
+	t_fractal	fractal;
+    int         max_iter;
+    int         iter;
 
-    x = -1;
-    while (++x < WIDTH)
-    {
-        y = -1;
-        while (++y < HEIGHT)
-        {
-            x0 = (x - WIDTH / 2) / (0.3 * WIDTH);
-            y0 = (y - HEIGHT / 2) / (0.3 * HEIGHT);
-            xx = 0;
-            yy = 0;
-            max_i = 100;
-            i = -1;
-            while (xx * xx + yy * yy < 4 && ++i < max_i) 
-            {
-                xtemp = xx * xx - yy * yy + x0;
-                yy = 2 * xx * yy + y0;
-                xx = xtemp;
-            }
-            if (i == max_i)   
-                img_pix_put(img, x, y, 0x000000);
-            else
-                img_pix_put(img, x, y, 0xFFFFFF);
-        }
-    }
+	max_iter = 100;
+	iter = -1;
+	fractal.x0 = (x - WIDTH / 2 - 200) / (0.3 * WIDTH);
+	fractal.y0 = (y - HEIGHT / 2) / (0.3 * HEIGHT);
+	fractal.xx = 0;
+	fractal.yy = 0;
+	while (pow(fractal.xx, 2) + pow(fractal.yy, 2) < 4 && ++iter < max_iter)
+	{
+		fractal.xtemp = pow(fractal.xx, 2) - pow(fractal.yy, 2) + fractal.x0;
+		fractal.yy = 2 * fractal.xx * fractal.yy + fractal.y0;
+		fractal.xx = fractal.xtemp;
+	}
+	if (iter == max_iter)
+		img_pix_put(img, x, y, color);
+	else
+		img_pix_put(img, x, y, 0xFFFFFF);
+}
+
+void	ft_fractal(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < WIDTH)
+	{
+		y = -1;
+		while (++y < HEIGHT)
+		{
+            set_mandelbrot(x, y, data->color, &data->img);
+		}
+	}
 }
 
 void	new_img(t_data *data)
@@ -77,33 +79,18 @@ void	new_img(t_data *data)
 	}
 }
 
-int	background(t_img *img, int color)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-			img_pix_put(img, x++, y, color);
-		y++;
-	}
-	return (0);
-}
-
 int	draw(t_data *data)
 {
-	ft_mandelbrot(&data->img);
+	ft_fractal(data);
+	//draw_l(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (1);
 }
 
 int	new_color(t_data *data)
 {
-	int colors[8] = {0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF, 0x000000};
 	static int	i;
+	int colors[8] = {0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF, 0x000000};
 
 	i = -1;
 	if (i == 7)
@@ -127,7 +114,7 @@ void	close_program(t_data *data)
 
 int	handle_input(int key, t_data *data)
 {
-    if (key == 99)
+	if (key == 99)
 		new_color(data);
 	if (key == 65307)
 		close_program(data);
@@ -145,10 +132,10 @@ void	init_data(t_data *data)
 	data->color = 0x000000;
 }
 
-int render(t_data *data)
+int	render(t_data *data)
 {
-    draw(data);
-    return (1);
+	draw(data);
+	return (1);
 }
 
 int	main(void)
@@ -158,7 +145,7 @@ int	main(void)
 	init_data(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_key_hook(data.win_ptr, &handle_input, &data);
-    mlx_hook(data.win_ptr, 6, 1L<<6, &mouse, &data);
+	mlx_hook(data.win_ptr, 6, 1L << 6, &mouse, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

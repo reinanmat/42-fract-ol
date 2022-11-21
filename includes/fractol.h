@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/21 18:13:48 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:30:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1200
-# define HEIGHT 900
+# define WIDTH 1000
+# define HEIGHT 1000
 
 typedef struct s_img
 {
@@ -52,16 +52,24 @@ typedef struct s_data
 
 typedef struct s_fractal
 {
-    double x;
-    double y;
+    int     x;
+    int     y;
+    double  x0;
+    double  y0;
+    double  xx;
+    double  yy;
+    double  xtemp;
 }			t_fractal;
 
 //all the functions
 void		close_program(t_data *data);
 int			draw(t_data *data);
+int			draw_l(t_data *data);
+void        set_mandelbrot(int x, int y, int color, t_img *img);
+void        ft_fractal(t_data *data);
 void		new_img(t_data *data);
-int		new_color(t_data *data);
-int		background(t_img *img, int color);
+int		    new_color(t_data *data);
+int		    background(t_img *img, int color);
 void		init_data(t_data *data);
 int			handle_input(int key, t_data *data);
 void		img_pix_put(t_img *img, int x, int y, int color);
