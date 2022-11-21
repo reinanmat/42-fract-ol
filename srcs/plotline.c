@@ -6,13 +6,13 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:58:10 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/17 18:44:43 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:33:13 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractal.h"
+#include "../includes/fractol.h"
 
-int draw(t_data *data)
+/*int draw(t_data *data)
 {
     if (data->mlx_ptr != NULL && data->color)
     {
@@ -38,7 +38,7 @@ int draw(t_data *data)
     }
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
     return (0);
-}
+}*/
 
 void plot_line_low(int x0, int y0, int x1, int y1, t_img *img)
 {

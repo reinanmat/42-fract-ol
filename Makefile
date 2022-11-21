@@ -6,31 +6,30 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/11/17 16:59:27 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/21 13:29:11 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libfractal
+NAME = fractol
 
-SRCS = $(addprefix srcs/, main.c plotline.c)
-
-OBJS = $(SRCS:.c=.o)
+FILES = all.c plotline.c 
+SRCS = $(addprefix srcs/, $(FILES))
+OBJS = $(FILES:.c=.o)
+INCLUDES = includes/
 
 CFLAGS = -Wall -Wextra -Werror
 LIBXFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
-	
-$(OBJS): $(SRCS)
-	cc $(CFLAGS) -I includes/fractal.h $(SRCS) $(LIBXFLAGS) -o fractal
+$(NAME): $(OBJS)
+	cc $(CFLAGS) -o $(NAME) $(OBJS) $(LIBXFLAGS)
 
-run:
-	./fractal
+$(OBJS): $(SRCS)
+	cc $(CFLAGS) -I $(INCLUDES) -c $(SRCS) 
 
 valgrind:
-	valgrind --leak-check ./fractal
+	valgrind --leak-check=full ./fractol
 
 clean:
 	rm -f $(OBJS)
