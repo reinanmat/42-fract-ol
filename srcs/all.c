@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 14:07:52 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:00:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	printf("x: %i\n", x);
 	printf("y: %i\n", y);
 	return (0);
-}*/
+}
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
@@ -98,6 +98,12 @@ int	new_color(t_data *data)
 		new_img(data);
 	}
 	return (0);
+}*/
+
+int	render(t_data *data)
+{
+	draw(data);
+	return (1);
 }
 
 void	close_program(t_data *data)
@@ -130,12 +136,6 @@ void	init_data(t_data *data)
     data->fractol.max_iter = 100;
     data->fractol.x0 = 0;
     data->fractol.y0 = 0;
-}
-
-int	render(t_data *data)
-{
-	draw(data);
-	return (1);
 }
 
 int	main(void)

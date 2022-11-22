@@ -6,13 +6,13 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:58:10 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/21 19:05:51 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:01:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int draw_l(t_data *data)
+/*int draw_l(t_data *data)
 {
     if (data->mlx_ptr != NULL && data->color)
     {

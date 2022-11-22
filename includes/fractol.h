@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 13:53:41 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:11:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ typedef struct s_data
 //all the functions
 void		close_program(t_data *data);
 int			draw(t_data *data);
-int			draw_l(t_data *data);
 void        set_mandelbrot(int x, int y, t_data *data);
+void        init_data(t_data *data);
 void        ft_fractal(t_data *data);
 void		new_img(t_data *data);
 int		    new_color(t_data *data);
 int		    background(t_img *img, int color);
+int         render(t_data *data);
 void		init_data(t_data *data);
 int			handle_input(int key, t_data *data);
 void		img_pix_put(t_img *img, int x, int y, int color);
