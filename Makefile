@@ -6,13 +6,13 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/11/21 13:29:11 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/22 13:54:23 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-FILES = all.c plotline.c 
+FILES = all.c 
 SRCS = $(addprefix srcs/, $(FILES))
 OBJS = $(FILES:.c=.o)
 INCLUDES = includes/
