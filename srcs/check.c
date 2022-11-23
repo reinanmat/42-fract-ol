@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:55:58 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 18:58:35 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/23 18:33:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	new_img(t_data *data)
+int     check_args(int argc, char **argv, t_data *data)
 {
-	if (data->img.mlx_img != NULL)
-		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	if (data->mlx_ptr != NULL)
-	{
-		data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-		data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-				&data->img.line_len, &data->img.endian);
-	}
+    if (argc != 2)
+    {
+        ft_printf("Usage: ./fractol [fractal]\n");
+        return (0);
+    }
+    if (ft_strcmp(argv[1], "mandelbrot") != 0 && ft_strcmp(argv[1], "julia") != 0)
+    {
+        ft_printf("Usage: ./fractol [fractal]\n");
+        return (0);
+    }
+    return (1);
 }

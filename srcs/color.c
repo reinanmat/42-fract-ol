@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:55:58 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 18:58:35 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/23 17:52:57 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/23 17:56:01 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	new_img(t_data *data)
+void    colors(t_data *data, int i)
 {
-	if (data->img.mlx_img != NULL)
-		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	if (data->mlx_ptr != NULL)
-	{
-		data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-		data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-				&data->img.line_len, &data->img.endian);
-	}
+    static int  color = 265;
+
+    if (i == data->fractol.max_iter)
+        data->color = 0;
+    else
+    {
+        data->color = color;
+        color += 265;
+    }
 }

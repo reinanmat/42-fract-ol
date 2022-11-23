@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 17:00:10 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:20:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	new_color(t_data *data)
 		new_img(data);
 	}
 	return (0);
-}*/
+}
 
 int	render(t_data *data)
 {
@@ -148,4 +148,4 @@ int	main(void)
 	//mlx_hook(data.win_ptr, 6, 1L << 6, &mouse, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
-}
+}*/

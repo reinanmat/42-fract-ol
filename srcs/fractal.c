@@ -6,48 +6,68 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:52:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/22 16:52:48 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:59:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	set_mandelbrot(int x, int y, t_data *data)
+double	map_re(int x, t_fractol *fractol)
 {
-    double      xtemp;
-    double      xx;
-    double      yy;
-    int         iter;
+	double	range;
 
-	iter = -1;
-	data->fractol.x0 = (x - WIDTH / 2 - 170) / (0.35 * WIDTH);
-	data->fractol.y0 = (y - HEIGHT / 2) / (0.35 * HEIGHT);
-	xx = 0;
-	yy = 0;
-	while (xx * xx + yy * yy < 4 && ++iter < data->fractol.max_iter)
-	{
-		xtemp = xx * xx - yy * yy + data->fractol.x0;
-		yy = 2 * xx * yy + data->fractol.y0;
-		xx = xtemp;
-	}
-	if (iter == data->fractol.max_iter)
-		img_pix_put(&data->img, x, y, 0x000000);
-	else
-		img_pix_put(&data->img, x, y, iter * data->color);
+	range = fractol->max_re - fractol->min_re;
+	return (((x * range) + fractol->pos_x) / (WIDTH - 1) + fractol->min_re);
 }
 
-void	ft_fractal(t_data *data)
+double	map_im(int y, t_fractol *fractol)
 {
-	int	x;
-	int	y;
+	double	range;
+
+	range = fractol->max_im - fractol->min_im;
+	return (((y * range) + fractol->pos_y) / (HEIGHT - 1) + fractol->min_im);
+}
+
+int	mandelbrot(double n_re, double n_im)
+{
+	double	temp;
+	double	xx;
+	double	yy;
+	int		iter;
+
+	xx = 0;
+	yy = 0;
+	iter = 0;
+	while (iter < MAX_ITER)
+	{
+		temp = xx * xx - yy * yy + n_re;
+		yy = 2 * xx * yy + n_im;
+		xx = temp;
+		if (xx * xx + yy * yy > 4)
+			return (iter);
+		iter++;
+	}
+	return (iter);
+}
+
+void	set_fractal(t_data *data)
+{
+	double	x;
+	double	y;
+	int		iter;
 
 	x = -1;
 	while (++x < WIDTH)
 	{
 		y = -1;
 		while (++y < HEIGHT)
-		{
-            set_mandelbrot(x, y, data);
+		{  
+			iter = mandelbrot(map_re(x, &data->fractol), map_im(y,
+						&data->fractol));
+			if (iter == MAX_ITER)
+				img_pix_put(&data->img, x, y, 0x000000);
+			else
+				img_pix_put(&data->img, x, y, iter * data->color);
 		}
 	}
 }
