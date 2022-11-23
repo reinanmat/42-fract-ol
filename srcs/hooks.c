@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/23 16:37:36 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:09:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	handle_input(int key, t_data *data)
 		data->fractol.pos_y += 100;
 	else if (key == 65362)
 		data->fractol.pos_y -= 100;
-    else if (key == 45)
+	else if (key == 45)
 		data->fractol.zoom += 0.5;
-	else if (key == 61) 
+	else if (key == 61)
 		data->fractol.zoom -= 0.5;
 	else if (key == 65307)
 		close_program(data);
@@ -42,6 +42,10 @@ int	handle_input(int key, t_data *data)
 		new_color(data);
 	else if (key == 65307)
 		close_program(data);
+	else if (key == 'a')
+		data->fractol.max_iter += 10;
+	else if (key == 'd')
+		data->fractol.max_iter -= 10;
 	printf("%d\n", key);
 	return (0);
 }

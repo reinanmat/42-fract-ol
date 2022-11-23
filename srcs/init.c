@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/23 18:23:34 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:24:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 void	init_fractol(t_fractol *fractol)
 {
 	fractol->max_iter = 10;
-    fractol->pos_x = 0;
-    fractol->pos_y = 0;
+	fractol->pos_x = 0;
+	fractol->pos_y = 0;
 	fractol->zoom = 1;
-    fractol->pos_x = 0;
-    fractol->pos_y = 0;
+	fractol->pos_x = 0;
+	fractol->pos_y = 0;
 	fractol->min_re = -2.1;
-    fractol->max_re = 0.6;
-    fractol->min_im = -1.2;
-    fractol->max_im = 1.2;
-    fractol->height = HEIGHT;
-    fractol->width = WIDTH;
+	fractol->max_re = 0.6;
+	fractol->min_im = -1.2;
+	fractol->max_im = 1.2;
+    fractol->max_iter = 100;
 }
 
 void	init_data(t_data *data)
@@ -52,8 +51,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-    if (check_args(argc, argv, &data) == 0)
-        return (0);
+	if (check_args(argc, argv, &data) == 0)
+		return (0);
 	init_data(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_key_hook(data.win_ptr, &handle_input, &data);

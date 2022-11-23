@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:52:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/23 17:59:48 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:44:07 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,39 @@ double	map_im(int y, t_fractol *fractol)
 	return (((y * range) + fractol->pos_y) / (HEIGHT - 1) + fractol->min_im);
 }
 
-int	mandelbrot(double n_re, double n_im)
+int julia(double n_re, double n_im, t_fractol *fractol)
 {
-	double	temp;
+    double	xx;
+    double	yy;
+    double  temp;
+    int		iter;
+
+    iter = 0;
+    xx = n_re;
+    yy = n_im;
+    while (iter < fractol->max_iter)
+    {
+        temp = xx * xx - yy * yy + fractol->arg_re;
+        yy = 2 * xx * yy + fractol->arg_im;
+        xx = temp;
+        if (xx * xx + yy * yy > 4)
+            break ;
+        iter++;
+    }
+    return (iter);
+}
+
+int	mandelbrot(double n_re, double n_im, t_fractol *fractol)
+{
 	double	xx;
 	double	yy;
+	double	temp;
 	int		iter;
 
 	xx = 0;
 	yy = 0;
 	iter = 0;
-	while (iter < MAX_ITER)
+	while (iter < fractol->max_iter)
 	{
 		temp = xx * xx - yy * yy + n_re;
 		yy = 2 * xx * yy + n_im;
@@ -62,9 +84,11 @@ void	set_fractal(t_data *data)
 		y = -1;
 		while (++y < HEIGHT)
 		{  
-			iter = mandelbrot(map_re(x, &data->fractol), map_im(y,
-						&data->fractol));
-			if (iter == MAX_ITER)
+            if (data->fractol.fractal == 1)
+                iter = mandelbrot(map_re(x, &data->fractol), map_im(y, &data->fractol), &data->fractol);
+            else
+                iter = julia(map_re(x, &data->fractol), map_im(y, &data->fractol), &data->fractol);
+			if (iter == data->fractol.max_iter)
 				img_pix_put(&data->img, x, y, 0x000000);
 			else
 				img_pix_put(&data->img, x, y, iter * data->color);

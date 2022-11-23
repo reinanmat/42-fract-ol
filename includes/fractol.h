@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/23 18:33:35 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:36:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
 # include <math.h>
 # include <stdio.h> //delet
 # include <stdlib.h>
@@ -22,7 +23,6 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
-# define MAX_ITER 10
 
 typedef struct s_img
 {
@@ -36,19 +36,20 @@ typedef struct s_img
 typedef struct s_fractol
 {
 	int			max_iter;
+    int         fractal;
 	double		pos_x;
 	double		pos_y;
-	int			mouse_x;
-	int			mouse_y;
 	double		x0;
 	double		y0;
-	double		width;
-	double		height;
 	double		zoom;
 	double		min_re;
 	double		max_re;
 	double		min_im;
 	double		max_im;
+    double      arg_re;
+    double      arg_im;
+    double      mouse_x;
+    double      mouse_y;
 }				t_fractol;
 
 typedef struct s_data
@@ -68,9 +69,9 @@ void			close_program(t_data *data);
 double			map_re(int x, t_fractol *fractol);
 double			map_im(int y, t_fractol *fractol);
 void			set_fractal(t_data *data);
-int			    mandelbrot(double n_re, double n_im);
+int			    mandelbrot(double n_re, double n_im, t_fractol *fractol);
 
-void            check_args(int argc, char **argv, t_data *data);
+int            check_args(int argc, char **argv, t_data *data);
 
 int				mouse(int x, int y, t_data *data);
 void			init_data(t_data *data);

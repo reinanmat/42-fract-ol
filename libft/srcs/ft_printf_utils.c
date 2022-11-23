@@ -6,21 +6,11 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:23:03 by revieira          #+#    #+#             */
-/*   Updated: 2022/10/18 15:37:16 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:51:47 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-size_t	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str && str[len])
-		len++;
-	return (len);
-}
 
 int	ft_putnbr_base(long long n, char *base)
 {
