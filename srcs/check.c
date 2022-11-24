@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 15:28:25 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:01:14 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	msg_error(void)
 	ft_printf("p_re = -2.0 up to 2.0\n");
 	ft_printf("p_im = -2.0 up to 2.0\n");
 	ft_printf("suger: -0.8 0.156\n");
+	ft_printf("3. Burning_Ship\n");
 	return (0);
 }
 
@@ -31,6 +32,8 @@ int	check_fractal(char *str)
 		return (1);
 	else if (ft_strncmp(str, "Julia", 5) == 0)
 		return (2);
+	else if (ft_strncmp(str, "Burning_Ship", 12) == 0)
+		return (3);
 	else
 		return (0);
 }

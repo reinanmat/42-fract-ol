@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 15:11:41 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:54:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
-# include <stdio.h> //delet
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -64,12 +63,14 @@ double			map_im(int y, t_fractol *f);
 void			set_fractal(t_fractol *f);
 int				julia(double n_re, double n_im, t_fractol *f);
 int				mandelbrot(double n_re, double n_im, t_fractol *f);
+int				burning_ship(double n_re, double n_im, t_fractol *f);
 
 int				check_args(int argc, char **argv, t_fractol *f);
 
 void			init_data(t_fractol *fractol);
 void			init_julia(t_fractol *f);
 void			init_mandelbrot(t_fractol *f);
+void			init_burning_ship(t_fractol *f);
 
 int				mouse(int x, int y, t_fractol *f);
 void			new_img(t_fractol *f);

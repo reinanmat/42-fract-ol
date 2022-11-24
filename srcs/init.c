@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 15:27:22 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:13:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ void    init_julia(t_fractol *f)
 	f->min_im = -1.2;
 	f->max_im = 1.2;
     f->max_iter = 100; 
+    f->arg_re = -0.7;
+    f->arg_im = 0.27015;
+    f->color = 265;
+}
+
+void    init_burning_ship(t_fractol *f)
+{
+    f->pos_x = 0;
+    f->pos_y = 0;
+    f->zoom = 1;
+    f->min_re = -1.8;
+    f->max_re = 1.8;
+    f->min_im = -1.2;
+    f->max_im = 1.2;
+    f->max_iter = 100;
     f->color = 265;
 }
 
@@ -49,6 +64,8 @@ void	init_data(t_fractol *f)
         init_mandelbrot(f);
     else if (f->fractal == 2)
         init_julia(f);
+    else if (f->fractal == 3)
+        init_burning_ship(f);       
 }
 
 void	close_program(t_fractol *f)

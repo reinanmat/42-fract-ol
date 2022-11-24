@@ -6,7 +6,7 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/11/24 14:55:56 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/24 18:55:29 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = fractol
 PATH_LIBFT 	= ./libft/
 INCLUDES 	= includes/ -I $(PATH_LIBFT)includes/
 FILES 		= init.c fractal.c julia.c mandelbrot.c \
-			  draw.c hooks.c img.c check.c color.c
+			  draw.c hooks.c img.c check.c color.c \
+			  burningship.c
 SRCS 		= $(addprefix srcs/, $(FILES))
 OBJS 		= $(FILES:.c=.o)
 
