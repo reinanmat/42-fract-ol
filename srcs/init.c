@@ -6,57 +6,70 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/23 19:24:28 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:27:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	init_fractol(t_fractol *fractol)
+void	init_mandelbrot(t_fractol *f)
 {
-	fractol->max_iter = 10;
-	fractol->pos_x = 0;
-	fractol->pos_y = 0;
-	fractol->zoom = 1;
-	fractol->pos_x = 0;
-	fractol->pos_y = 0;
-	fractol->min_re = -2.1;
-	fractol->max_re = 0.6;
-	fractol->min_im = -1.2;
-	fractol->max_im = 1.2;
-    fractol->max_iter = 100;
+	f->pos_x = 0;
+	f->pos_y = 0;
+	f->zoom = 1;
+	f->min_re = -2.1;
+	f->max_re = 0.6;
+	f->min_im = -1.2;
+	f->max_im = 1.2;
+    f->max_iter = 100;
+    f->color = 265;
 }
 
-void	init_data(t_data *data)
+void    init_julia(t_fractol *f)
 {
-	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "Fract-ol");
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-			&data->img.line_len, &data->img.endian);
-	data->color = 265;
-	init_fractol(&data->fractol);
+	f->pos_x = 0;
+	f->pos_y = 0;
+	f->zoom = 1;
+	f->min_re = -1.8;
+	f->max_re = 1.8;
+	f->min_im = -1.2;
+	f->max_im = 1.2;
+    f->max_iter = 100; 
+    f->color = 265;
 }
 
-void	close_program(t_data *data)
+void	init_data(t_fractol *f)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	f->mlx_ptr = mlx_init();
+	f->win_ptr = mlx_new_window(f->mlx_ptr, WIDTH, HEIGHT, "Fract-ol");
+	f->img.mlx_img = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
+	f->img.addr = mlx_get_data_addr(f->img.mlx_img, &f->img.bpp,
+			&f->img.line_len, &f->img.endian);
+    if (f->fractal == 1)
+        init_mandelbrot(f);
+    else if (f->fractal == 2)
+        init_julia(f);
+}
+
+void	close_program(t_fractol *f)
+{
+	mlx_destroy_image(f->mlx_ptr, f->img.mlx_img);
+	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
+	mlx_destroy_display(f->mlx_ptr);
+	free(f->mlx_ptr);
 	exit(0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_fractol	f;
 
-	if (check_args(argc, argv, &data) == 0)
+	if (!(check_args(argc, argv, &f)))
 		return (0);
-	init_data(&data);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_key_hook(data.win_ptr, &handle_input, &data);
-	mlx_hook(data.win_ptr, 6, 1L << 6, &mouse, &data);
-	mlx_loop(data.mlx_ptr);
+	init_data(&f);
+	mlx_loop_hook(f.mlx_ptr, &render, &f);
+	mlx_key_hook(f.win_ptr, &handle_input, &f);
+	mlx_hook(f.win_ptr, 6, 1L << 6, &mouse, &f);
+	mlx_loop(f.mlx_ptr);
 	return (0);
 }
