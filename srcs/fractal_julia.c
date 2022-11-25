@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   fractal_julia.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:43 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/24 14:42:29 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/25 16:30:20 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+int	julia(double n_re, double n_im, t_fractol *fractol)
 {
-	char	*pixel;
+	double	xx;
+	double	yy;
+	double	temp;
+	int		iter;
 
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(int *)pixel = color;
-}
-
-int	new_color(t_fractol *f)
-{
-	static int	i;
-
-	i = i + 0x010203;
-	f->color = i;
-	return (0);
-}
-
-int	render(t_fractol *f)
-{
-	mlx_clear_window(f->mlx_ptr, f->win_ptr);
-	set_fractal(f);
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img.mlx_img, 0, 0);
-	return (1);
+	iter = 0;
+	xx = n_re;
+	yy = n_im;
+	while (iter < fractol->max_iter)
+	{
+		temp = xx * xx - yy * yy + fractol->arg_re;
+		yy = 2 * xx * yy - fractol->arg_im;
+		xx = temp;
+		if (xx * xx + yy * yy > 4)
+			break ;
+		iter++;
+	}
+	return (iter);
 }

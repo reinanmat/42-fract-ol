@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 19:13:08 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:40:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,42 @@
 
 void	init_mandelbrot(t_fractol *f)
 {
-	f->pos_x = 0;
-	f->pos_y = 0;
-	f->zoom = 1;
 	f->min_re = -2.1;
 	f->max_re = 0.6;
 	f->min_im = -1.2;
-	f->max_im = 1.2;
-    f->max_iter = 100;
-    f->color = 265;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 265;
 }
 
-void    init_julia(t_fractol *f)
+void	init_julia(t_fractol *f)
 {
-	f->pos_x = 0;
-	f->pos_y = 0;
-	f->zoom = 1;
-	f->min_re = -1.8;
-	f->max_re = 1.8;
-	f->min_im = -1.2;
-	f->max_im = 1.2;
-    f->max_iter = 100; 
-    f->arg_re = -0.7;
-    f->arg_im = 0.27015;
-    f->color = 265;
+	f->min_re = -2.0;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 265;
 }
 
-void    init_burning_ship(t_fractol *f)
+void	init_burning_ship(t_fractol *f)
 {
-    f->pos_x = 0;
-    f->pos_y = 0;
-    f->zoom = 1;
-    f->min_re = -1.8;
-    f->max_re = 1.8;
-    f->min_im = -1.2;
-    f->max_im = 1.2;
-    f->max_iter = 100;
-    f->color = 265;
+	f->min_re = -2.0;
+	f->max_re = 1.0;
+	f->min_im = -2.0;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 265;
+}
+
+void	init_fractal(t_fractol *f)
+{
+	if (f->fractal == 1)
+		init_mandelbrot(f);
+	else if (f->fractal == 2)
+		init_julia(f);
+	else if (f->fractal == 3)
+		init_burning_ship(f);
 }
 
 void	init_data(t_fractol *f)
@@ -60,33 +59,5 @@ void	init_data(t_fractol *f)
 	f->img.mlx_img = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
 	f->img.addr = mlx_get_data_addr(f->img.mlx_img, &f->img.bpp,
 			&f->img.line_len, &f->img.endian);
-    if (f->fractal == 1)
-        init_mandelbrot(f);
-    else if (f->fractal == 2)
-        init_julia(f);
-    else if (f->fractal == 3)
-        init_burning_ship(f);       
-}
-
-void	close_program(t_fractol *f)
-{
-	mlx_destroy_image(f->mlx_ptr, f->img.mlx_img);
-	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
-	mlx_destroy_display(f->mlx_ptr);
-	free(f->mlx_ptr);
-	exit(0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_fractol	f;
-
-	if (!(check_args(argc, argv, &f)))
-		return (0);
-	init_data(&f);
-	mlx_loop_hook(f.mlx_ptr, &render, &f);
-	mlx_key_hook(f.win_ptr, &handle_input, &f);
-	mlx_hook(f.win_ptr, 6, 1L << 6, &mouse, &f);
-	mlx_loop(f.mlx_ptr);
-	return (0);
+	init_fractal(f);
 }

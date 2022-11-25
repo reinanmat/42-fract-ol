@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:43 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/25 15:10:16 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/25 16:30:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+int	main(int argc, char **argv)
 {
-	char	*pixel;
+	t_fractol	f;
 
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(int *)pixel = color;
-}
-
-int	new_color(t_fractol *f)
-{
-	static int	i;
-
-	i = i + 0x010203;
-	f->color = i;
+	if (!(check_args(argc, argv, &f)))
+		return (0);
+	init_data(&f);
+	mlx_loop_hook(f.mlx_ptr, &render, &f);
+	mlx_key_hook(f.win_ptr, &handle_input, &f);
+	mlx_hook(f.win_ptr, 6, 1L << 6, &mouse, &f);
+	mlx_loop(f.mlx_ptr);
 	return (0);
-}
-
-int	render(t_fractol *f)
-{
-	mlx_clear_window(f->mlx_ptr, f->win_ptr);
-	set_fractal(f);
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img.mlx_img, 0, 0);
-	return (1);
 }

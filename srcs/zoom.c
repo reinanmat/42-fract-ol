@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 17:52:57 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:12 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/25 12:45:28 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/25 16:30:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	colors(t_fractol *f, int i)
+void	key_zoom(int key, t_fractol *f)
 {
-	static int	color;
+	t_aux	aux;
 
-	color = 265;
-	if (i == f->max_iter)
-		color = 0;
-	else
+	aux.range_re = f->max_re - f->min_re;
+	aux.range_im = f->max_im - f->min_im;
+	if (key == 61)
 	{
-		f->color = color;
-		color += 265;
+		f->min_re += aux.range_re * 0.1;
+		f->max_re -= aux.range_re * 0.1;
+		f->min_im += aux.range_im * 0.1;
+		f->max_im -= aux.range_im * 0.1;
+	}
+	if (key == 45)
+	{
+		f->min_re -= aux.range_re * 0.1;
+		f->max_re += aux.range_re * 0.1;
+		f->min_im -= aux.range_im * 0.1;
+		f->max_im += aux.range_im * 0.1;
 	}
 }

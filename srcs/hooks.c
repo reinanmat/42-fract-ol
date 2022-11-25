@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 18:54:40 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:43:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,28 @@ int	mouse(int x, int y, t_fractol *f)
 	return (0);
 }
 
+void	new_max_iter(int key, t_fractol *f)
+{
+	if (key == 'a')
+		f->max_iter += 10;
+	if (key == 'd')
+		f->max_iter -= 10;
+}
+
 int	handle_input(int key, t_fractol *f)
 {
-	if (key == 114)
-    {
-        if (f->fractal == 1)
-            init_mandelbrot(f);
-        else if (f->fractal == 2)
-            init_julia(f);
-        else if (f->fractal == 3)
-            init_burning_ship(f);
-    }
-	else if (key == 65363)
-		f->pos_x += 100;
-	else if (key == 65361)
-		f->pos_x -= 100;
-	else if (key == 65364)
-		f->pos_y += 100;
-	else if (key == 65362)
-		f->pos_y -= 100;
-	else if (key == 45)
-		f->zoom += 0.5;
-	else if (key == 61)
-		f->zoom -= 0.5;
-	else if (key == 99)
-		new_color(f);
-	else if (key == 65307)
+	if (key == 65307)
 		close_program(f);
-	else if (key == 'a')
-		f->max_iter += 10;
-	else if (key == 'd')
-		f->max_iter -= 10;
+	else if (key == 114)
+		init_fractal(f);
+	else if (key >= 65361 && key <= 65364)
+		arrows(key, f);
+	else if (key == 45 || key == 61)
+		key_zoom(key, f);
+	else if (key == 32)
+		new_color(f);
+	else if (key == 'a' || key == 'd')
+		new_max_iter(key, f);
 	ft_printf("%d\n", key);
 	return (0);
 }

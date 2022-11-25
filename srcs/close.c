@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:43 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/25 15:08:00 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/25 16:30:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+void	close_program(t_fractol *f)
 {
-	char	*pixel;
-
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(int *)pixel = color;
-}
-
-int	new_color(t_fractol *f)
-{
-	static int	i;
-
-	i = i + 0x010203;
-	f->color = i;
-	return (0);
-}
-
-int	render(t_fractol *f)
-{
-	mlx_clear_window(f->mlx_ptr, f->win_ptr);
-	set_fractal(f);
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img.mlx_img, 0, 0);
-	return (1);
+	mlx_destroy_image(f->mlx_ptr, f->img.mlx_img);
+	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
+	mlx_destroy_display(f->mlx_ptr);
+	free(f->mlx_ptr);
+	exit(0);
 }
