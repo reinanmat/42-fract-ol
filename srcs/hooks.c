@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:43:58 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:38:13 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	mouse(int x, int y, t_fractol *f)
 {
-	ft_printf("(%d, %d)\n", x, y);
-	f->arg_re = map_re(x, f);
-	f->arg_im = map_im(y, f);
+	if (f->args == 0)
+	{
+		f->arg_re = map_re(x, f);
+		f->arg_im = map_im(y, f);
+	}
 	return (0);
 }
 
@@ -39,7 +41,12 @@ int	handle_input(int key, t_fractol *f)
 	else if (key == 45 || key == 61)
 		key_zoom(key, f);
 	else if (key == 32)
-		new_color(f);
+	{
+		if (f->color == 5)
+			f->color = 0;
+		else
+			f->color++;
+	}
 	else if (key == 'a' || key == 'd')
 		new_max_iter(key, f);
 	ft_printf("%d\n", key);

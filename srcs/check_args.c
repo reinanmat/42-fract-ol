@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:32:46 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:13:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int	check_julia(int argc, char **argv, t_fractol *f)
 	f->arg_im = ft_atof(argv[3]);
 	if (f->arg_im < -2 || f->arg_im > 2)
 		return (0);
+	if (f->arg_im == 0 && f->arg_re == 0)
+		f->args = 0;
+	else
+		f->args = 1;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:33:49 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:23:33 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_fractol
 	double	max_re;
 	double	min_im;
 	double	max_im;
+    int     args;
 	double	arg_re;
 	double	arg_im;
 	t_img	img;
@@ -65,7 +66,7 @@ int			check_fractal(char *str);
 int			check_julia(int argc, char **argv, t_fractol *f);
 int			msg_error(void);
 
-void		init_data(t_fractol *fractol);
+int 		init_data(t_fractol *fractol);
 void		init_fractal(t_fractol *f);
 void		init_julia(t_fractol *f);
 void		init_mandelbrot(t_fractol *f);
@@ -86,7 +87,14 @@ int			mouse(int x, int y, t_fractol *f);
 
 void		new_img(t_fractol *f);
 int			new_color(t_fractol *f);
-void		colors(t_fractol *f, int i);
+void 		set_color(int x, int y, int i, t_fractol *f);
+int         colors_set_1(int n);
+int         colors_set_2(int n);
+int         colors_set_3(int n);
+int         colors_set_4(int n);
+int         colors_set_5(int n);
+
+
 int			render(t_fractol *f);
 int			handle_input(int key, t_fractol *f);
 void		img_pix_put(t_img *img, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:52:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:07 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:55:42 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@ double	map_im(int y, t_fractol *f)
 	return (f->min_im + (y * range) / HEIGHT);
 }
 
+void	set_color(int x, int y, int i, t_fractol *f)
+{
+	int	color;
+
+	color = 0;
+	if (i == f->max_iter)
+		color = 0x000000;
+	else
+	{
+		if (f->color == 0)
+			color = i * 265;
+		else if (f->color == 1)
+			color = colors_set_1(i);
+		else if (f->color == 2)
+			color = colors_set_2(i);
+		else if (f->color == 3)
+			color = colors_set_3(i);
+		else if (f->color == 4)
+			color = colors_set_4(i);
+		else if (f->color == 5)
+			color = colors_set_5(i);
+	}
+	img_pix_put(&f->img, x, y, color);
+}
+
 void	set_fractal(t_fractol *f)
 {
 	double	x;
@@ -46,10 +71,7 @@ void	set_fractal(t_fractol *f)
 				iter = julia(map_re(x, f), map_im(y, f), f);
 			else if (f->fractal == 3)
 				iter = burning_ship(map_re(x, f), map_im(y, f), f);
-			if (iter == f->max_iter)
-				img_pix_put(&f->img, x, y, 0x000000);
-			else
-				img_pix_put(&f->img, x, y, iter * f->color);
+			set_color(x, y, iter, f);
 		}
 	}
 }
