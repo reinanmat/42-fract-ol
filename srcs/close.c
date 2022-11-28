@@ -6,13 +6,13 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:08:00 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:39 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:21:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	close_program(t_fractol *f)
+int	close_program(t_fractol *f)
 {
 	mlx_destroy_image(f->mlx_ptr, f->img.mlx_img);
 	mlx_destroy_window(f->mlx_ptr, f->win_ptr);

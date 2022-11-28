@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/28 17:23:33 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:46:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_fractol
 	int		max_iter;
 	int		fractal;
 	int		color;
+    int     colorloop;
 	double	x0;
 	double	y0;
 	double	min_re;
@@ -101,6 +102,6 @@ void		img_pix_put(t_img *img, int x, int y, int color);
 
 double		ft_abs(double n);
 
-void		close_program(t_fractol *f);
+int		close_program(t_fractol *f);
 
 #endif
