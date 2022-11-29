@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:07:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 16:49:24 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:55:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@ int	check_double(const char *str)
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str && *str != '.')
-    {
-        if (!ft_isdigit(*str))
-            return (0);
-        str++;
-    }
-    if (*str == '.')
-    {
-        if (!ft_isdigit(*(str + 1)))
-            return (0);
-        str++;
-        while (*str)
-        {
-            if (!ft_isdigit(*str))
-                return (0);
-            str++;
-        }
-    }
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	if (*str == '.')
+	{
+		if (!ft_isdigit(*(str + 1)))
+			return (0);
+		str++;
+		while (*str)
+		{
+			if (!ft_isdigit(*str))
+				return (0);
+			str++;
+		}
+	}
 	return (1);
 }
 
