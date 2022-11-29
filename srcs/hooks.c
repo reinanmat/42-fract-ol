@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:51 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:26:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	handle_input(int key, t_fractol *f)
 		init_fractal(f);
 	else if (key >= 65361 && key <= 65364)
 		arrows(key, f);
-	else if (key == 45 || key == 61)
-		key_zoom(key, f);
 	else if (key == 32)
 	{
 		if (f->color == 5)
@@ -47,8 +45,13 @@ int	handle_input(int key, t_fractol *f)
 		else
 			f->color++;
 	}
-	else if (key == 'a' || key == 'd')
+	if (key == 'a' || key == 'd')
 		new_max_iter(key, f);
-	ft_printf("%d\n", key);
+	else if (key == 's' && f->fractal == 2)
+		f->args = ft_invert(f->args);
+	else if (key == 'z')
+		zoom(0.1, 'd', f);
+	else if (key == 'x')
+		zoom(0.1, 'u', f);
 	return (0);
 }

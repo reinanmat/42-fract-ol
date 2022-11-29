@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:43 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:48:14 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,29 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-int	new_color(t_fractol *f)
+void	set_color(int x, int y, int i, t_fractol *f)
 {
-	static int	i;
+	int	color;
 
-	i = i + 0x010203;
-	f->color = i;
-	return (0);
+	color = 0;
+	if (i == f->max_iter)
+		color = 0x000000;
+	else
+	{
+		if (f->color == 0)
+			color = i * 265;
+		else if (f->color == 1)
+			color = colors_set_1(i);
+		else if (f->color == 2)
+			color = colors_set_2(i);
+		else if (f->color == 3)
+			color = colors_set_3(i);
+		else if (f->color == 4)
+			color = colors_set_4(i);
+		else if (f->color == 5)
+			color = colors_set_5(i);
+	}
+	img_pix_put(&f->img, x, y, color);
 }
 
 int	render(t_fractol *f)

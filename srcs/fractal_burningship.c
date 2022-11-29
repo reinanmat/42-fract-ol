@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 18:46:57 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:17 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:26:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	burning_ship(double n_re, double n_im, t_fractol *fractol)
 	while (iter < fractol->max_iter)
 	{
 		temp = xx * xx - yy * yy + n_re;
-		yy = ft_abs(2 * xx * yy) + n_im;
+		yy = ft_fabs(2 * xx * yy) + n_im;
 		xx = temp;
 		if (xx * xx + yy * yy > 4)
 			return (iter);
