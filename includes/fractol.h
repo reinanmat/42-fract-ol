@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:52:25 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:14:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int			mandelbrot(double n_re, double n_im, t_fractol *f);
 int			burning_ship(double n_re, double n_im, t_fractol *f);
 
 //hooks
-int         mouse(int x, int y, t_fractol *f);
+int			mouse(int x, int y, t_fractol *f);
 int			handle_input(int key, t_fractol *f);
 void		arrows(int key, t_fractol *f);
 void		key_zoom(int key, t_fractol *f);

@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:45:28 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:45:22 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:26:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	zoom(double zoom, char up_down, t_fractol *f)
 	aux.range_re = f->max_im - f->min_im;
 	if (up_down == 'd')
 	{
+		if (f->min_re > f->max_re || f->min_im > f->max_im)
+			return ;
 		f->min_im += aux.range_im * zoom;
 		f->max_im -= aux.range_im * zoom;
 		f->min_re += aux.range_re * zoom;

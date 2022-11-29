@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:48:14 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:50:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	set_color(int x, int y, int i, t_fractol *f)
 	else
 	{
 		if (f->color == 0)
-			color = i * 265;
+                color = i * 265;
 		else if (f->color == 1)
-			color = colors_set_1(i);
+			color = i * 285;
 		else if (f->color == 2)
-			color = colors_set_2(i);
+			color = i * 300;
 		else if (f->color == 3)
-			color = colors_set_3(i);
+			color = i * 265265;
 		else if (f->color == 4)
 			color = colors_set_4(i);
 		else if (f->color == 5)
