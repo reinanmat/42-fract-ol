@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 17:14:00 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:56:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>

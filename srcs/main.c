@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:10:16 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:26:58 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:08:04 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	mlx_hook(f.win_ptr, 2, 1L << 0, &handle_input, &f);
 	mlx_hook(f.win_ptr, 17, 0L, &close_program, &f);
 	mlx_hook(f.win_ptr, 6, 1L << 6, &mouse, &f);
-	mlx_hook(f.win_ptr, 4, 1L << 2, &mouse_zoom, &f);
+    mlx_mouse_hook(f.win_ptr, &mouse_zoom, &f);
+	//mlx_hook(f.win_ptr, 4, 1L << 2, &mouse_zoom, &f);
 	mlx_loop(f.mlx_ptr);
 	return (0);
 }

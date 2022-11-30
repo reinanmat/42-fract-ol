@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:26:15 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:54:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	new_max_iter(int key, t_fractol *f)
 
 int	handle_input(int key, t_fractol *f)
 {
-	if (key == 65307)
+	if (key == XK_Escape)
 		close_program(f);
 	else if (key == 114)
 		init_fractal(f);
-	else if (key >= 65361 && key <= 65364)
+	else if (key == XK_Up || key == XK_Down || key == XK_Left
+			|| key == XK_Right)
 		arrows(key, f);
 	else if (key == 32)
 	{
