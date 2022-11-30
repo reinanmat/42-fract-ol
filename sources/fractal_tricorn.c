@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_julia.c                                    :+:      :+:    :+:   */
+/*   fractal_tricorn.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 14:42:29 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:20 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/30 17:41:37 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/30 18:27:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	julia(double n_re, double n_im, t_fractol *fractol)
+void	init_tricorn(t_fractol *f)
+{
+	f->min_re = -2.1;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 0;
+}
+
+int	tricorn(double n_re, double n_im, t_fractol *f)
 {
 	double	xx;
 	double	yy;
 	double	temp;
 	int		iter;
 
-	iter = 0;
 	xx = n_re;
 	yy = n_im;
-	while (iter < fractol->max_iter)
+	iter = 0;
+	while (iter < f->max_iter)
 	{
-		temp = xx * xx - yy * yy + fractol->arg_re;
-		yy = 2 * xx * yy - fractol->arg_im;
+		temp = xx * xx - yy * yy + n_re;
+		yy = -2 * xx * yy + n_im;
 		xx = temp;
 		if (xx * xx + yy * yy > 4)
-			break ;
+			return (iter);
 		iter++;
 	}
 	return (iter);

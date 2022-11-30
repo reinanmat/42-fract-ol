@@ -6,24 +6,24 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 12:56:48 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:46:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../libft/includes/ft_printf.h"
-# include "../libft/includes/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "../libraries/libft/includes/ft_printf.h"
+# include "../libraries/libft/includes/libft.h"
+# include "../libraries/minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 1000.00
+# define HEIGHT 1000.00
 
 typedef struct s_img
 {
@@ -49,7 +49,6 @@ typedef struct s_fractol
 	int		max_iter;
 	int		fractal;
 	int		color;
-	int		colorloop;
 	double	x0;
 	double	y0;
 	double	min_re;
@@ -75,6 +74,7 @@ void		init_fractal(t_fractol *f);
 void		init_julia(t_fractol *f);
 void		init_mandelbrot(t_fractol *f);
 void		init_burning_ship(t_fractol *f);
+void		init_tricorn(t_fractol *f);
 
 //fractal
 void		set_fractal(t_fractol *f);
@@ -83,6 +83,7 @@ double		map_im(int y, t_fractol *f);
 int			julia(double n_re, double n_im, t_fractol *f);
 int			mandelbrot(double n_re, double n_im, t_fractol *f);
 int			burning_ship(double n_re, double n_im, t_fractol *f);
+int			tricorn(double n_re, double n_im, t_fractol *f);
 
 //hooks
 int			mouse(int x, int y, t_fractol *f);
@@ -101,7 +102,6 @@ int			colors_set_1(int n);
 int			colors_set_2(int n);
 int			colors_set_3(int n);
 int			colors_set_4(int n);
-int			colors_set_5(int n);
 
 //zoom
 void		zoom(double zoom, char up_down, t_fractol *f);

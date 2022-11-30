@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:52:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:55:43 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:14:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	set_fractal(t_fractol *f)
 				iter = julia(map_re(x, f), map_im(y, f), f);
 			else if (f->fractal == 3)
 				iter = burning_ship(map_re(x, f), map_im(y, f), f);
+			else if (f->fractal == 4)
+				iter = tricorn(map_re(x, f), map_im(y, f), f);
 			set_color(x, y, iter, f);
 		}
 	}

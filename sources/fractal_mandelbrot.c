@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_burningship.c                              :+:      :+:    :+:   */
+/*   fractal_mandelbrot.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 18:46:57 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 15:26:38 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/24 14:41:09 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/30 18:11:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	burning_ship(double n_re, double n_im, t_fractol *fractol)
+void	init_mandelbrot(t_fractol *f)
+{
+	f->min_re = -2.1;
+	f->max_re = 0.6;
+	f->min_im = -1.2;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 0;
+}
+
+int	mandelbrot(double n_re, double n_im, t_fractol *f)
 {
 	double	xx;
 	double	yy;
@@ -22,10 +32,10 @@ int	burning_ship(double n_re, double n_im, t_fractol *fractol)
 	xx = 0;
 	yy = 0;
 	iter = 0;
-	while (iter < fractol->max_iter)
+	while (iter < f->max_iter)
 	{
 		temp = xx * xx - yy * yy + n_re;
-		yy = ft_fabs(2 * xx * yy) + n_im;
+		yy = 2 * xx * yy + n_im;
 		xx = temp;
 		if (xx * xx + yy * yy > 4)
 			return (iter);

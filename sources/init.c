@@ -6,41 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:35:44 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 18:20:17 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:05:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-void	init_mandelbrot(t_fractol *f)
-{
-	f->min_re = -2.1;
-	f->max_re = 0.6;
-	f->min_im = -1.2;
-	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
-	f->max_iter = 100;
-	f->color = 0;
-}
-
-void	init_julia(t_fractol *f)
-{
-	f->min_re = -2.0;
-	f->max_re = 2.0;
-	f->min_im = -2.0;
-	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
-	f->max_iter = 100;
-	f->color = 0;
-}
-
-void	init_burning_ship(t_fractol *f)
-{
-	f->min_re = -2.0;
-	f->max_re = 1.0;
-	f->min_im = -2.0;
-	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
-	f->max_iter = 100;
-	f->color = 0;
-}
 
 void	init_fractal(t_fractol *f)
 {
@@ -50,6 +20,8 @@ void	init_fractal(t_fractol *f)
 		init_julia(f);
 	else if (f->fractal == 3)
 		init_burning_ship(f);
+	else if (f->fractal == 4)
+		init_tricorn(f);
 }
 
 int	init_data(t_fractol *f)

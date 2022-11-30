@@ -6,44 +6,49 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/11/28 17:41:34 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/30 18:44:55 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-PATH_LIBFT 	= ./libft/
-INCLUDES 	= includes/ -I $(PATH_LIBFT)includes/
-FILES 		= init.c set_fractal.c fractal_julia.c fractal_mandelbrot.c \
-			  draw.c hooks.c check_args.c colors.c close.c main.c\
-			  fractal_burningship.c move.c zoom.c utils.c
-SRCS 		= $(addprefix srcs/, $(FILES))
-OBJS 		= $(FILES:.c=.o)
+PATH_OBJS	= ./objects/
+PATH_SRCS	= ./sources/
+PATH_LIBFT 	= ./libraries/libft/
+PATH_LIBX	= ./libraries/minilibx-linux/
+INCLUDES 	= -I includes/ -I $(PATH_LIBFT)
+
+FILES 		= init set_fractal fractal_julia fractal_mandelbrot \
+			  draw keyhooks check_args colors close_program main\
+			  fractal_burningship fractal_tricorn mousehooks zoom utils
+OBJS 		= $(addprefix $(PATH_OBJS), $(addsuffix .o, $(FILES) ) )
+SRCS 		= $(addsuffix .c, $(FILES) )
 
 CFLAGS 		= -Wall -Wextra -Werror
 LIBFTFLAGS 	= -L $(PATH_LIBFT) -lft
-LIBXFLAGS 	= -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
+LIBXFLAGS 	= -L $(PATH_LIBX) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(PATH_OBJS) $(OBJS)
+	make -C $(PATH_LIBFT) --no-print-directory
 	cc $(CFLAGS) -o $(NAME) $(OBJS) $(LIBXFLAGS) $(LIBFTFLAGS)
 
-$(OBJS): $(SRCS)
-	make -C $(PATH_LIBFT)
-	cc $(CFLAGS) -I $(INCLUDES) -c $(SRCS)  
+$(PATH_OBJS):
+	mkdir -p $(PATH_OBJS)
 
-valgrind:
-	valgrind --leak-check=full ./fractol
+$(PATH_OBJS)%.o: $(PATH_SRCS)%.c
+	cc $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-clean:
-	make clean -C $(PATH_LIBFT)
+clean:	
 	rm -f $(OBJS)
+	rm -rf $(PATH_OBJS)
+	make clean -C $(PATH_LIBFT) --no-print-directory
 
 fclean: clean
-	make fclean -C $(PATH_LIBFT)
-	rm -f $(NAME)
+	rm -f $(NAME)	
+	make fclean -C $(PATH_LIBFT) --no-print-directory
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

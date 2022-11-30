@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   keyhooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 14:23:45 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:34:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	mouse(int x, int y, t_fractol *f)
+void	arrows(int key, t_fractol *f)
 {
-	if (f->args == 0)
+	t_aux	aux;
+
+	aux.range_re = f->max_re - f->min_re;
+	aux.range_im = f->max_im - f->min_im;
+	if (key == XK_Left)
 	{
-		f->arg_re = map_re(x, f);
-		f->arg_im = map_im(y, f);
+		f->min_re -= aux.range_re * 0.1;
+		f->max_re -= aux.range_re * 0.1;
 	}
-	return (0);
+	else if (key == XK_Right)
+	{
+		f->min_re += aux.range_re * 0.1;
+		f->max_re += aux.range_re * 0.1;
+	}
+	else if (key == XK_Up)
+	{
+		f->min_im -= aux.range_im * 0.1;
+		f->max_im -= aux.range_im * 0.1;
+	}
+	else if (key == XK_Down)
+	{
+		f->min_im += aux.range_im * 0.1;
+		f->max_im += aux.range_im * 0.1;
+	}
 }
 
 void	new_max_iter(int key, t_fractol *f)
@@ -38,7 +56,7 @@ int	handle_input(int key, t_fractol *f)
 		init_fractal(f);
 	else if (key == 32)
 	{
-		if (f->color == 5)
+		if (f->color == 7)
 			f->color = 0;
 		else
 			f->color++;

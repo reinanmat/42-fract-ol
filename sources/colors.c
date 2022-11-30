@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:52:57 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/28 17:38:47 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:29:32 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,29 +105,5 @@ int	colors_set_4(int n)
 		color = 0xB80B02;
 	else if (n % 8 == 0)
 		color = 0x5e0601;
-	return (color);
-}
-
-int	colors_set_5(int n)
-{
-	int	color;
-
-	color = 0;
-	if (n % 8 == 7)
-		color = 0xFFFFFF;
-	else if (n % 8 == 6)
-		color = 0x9400D3;
-	else if (n % 8 == 5)
-		color = 0x4B0082;
-	else if (n % 8 == 4)
-		color = 0x0000FF;
-	else if (n % 8 == 3)
-		color = 0x00FF00;
-	else if (n % 8 == 2)
-		color = 0xFFFF00;
-	else if (n % 8 == 1)
-		color = 0xFF7F00;
-	else if (n % 8 == 0)
-		color = 0xFF0000;
 	return (color);
 }

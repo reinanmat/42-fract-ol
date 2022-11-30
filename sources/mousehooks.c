@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.c                                             :+:      :+:    :+:   */
+/*   mousehooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 12:45:28 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 14:12:46 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/25 12:24:16 by revieira          #+#    #+#             */
+/*   Updated: 2022/11/30 18:46:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	zoom(double zoom, char up_down, t_fractol *f)
+int	mouse(int x, int y, t_fractol *f)
 {
-	if (up_down == 'd')
+	if (f->args == 0)
 	{
-		f->min_re += (f->max_im - f->min_im) * zoom;
-		f->max_re -= (f->max_im - f->min_im) * zoom;
-		f->min_im += (f->max_re - f->min_re) * zoom;
-		f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+		f->arg_re = map_re(x, f);
+		f->arg_im = map_im(y, f);
 	}
-	else if (up_down == 'u')
-	{
-		f->min_re -= (f->max_im - f->min_im) * zoom;
-		f->max_re += (f->max_im - f->min_im) * zoom;
-		f->min_im -= (f->max_re - f->min_re) * zoom;
-		f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im ;
-	}
+	return (0);
 }
 
 void	resize(double value, char direction, t_fractol *f)
@@ -70,13 +62,13 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		x -= WIDTH / 2;
 		y -= HEIGHT / 2;
 		if (x < 0)
-			resize(ft_fabs(x) / (double)WIDTH, 'l', f);
+			resize(ft_fabs(x) / WIDTH, 'l', f);
 		else if (x > 0)
-			resize(x / (double)WIDTH, 'r', f);
+			resize(x / WIDTH, 'r', f);
 		if (y < 0)
-			resize(ft_fabs(y) / (double)HEIGHT, 'u', f);
+			resize(ft_fabs(y) / HEIGHT, 'u', f);
 		else if (y > 0)
-			resize(y / (double)HEIGHT, 'd', f);
+			resize(y / HEIGHT, 'd', f);
 	}
 	if (key == 5)
 		zoom(0.1, 'u', f);

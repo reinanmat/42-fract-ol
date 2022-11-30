@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/29 16:52:40 by revieira         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:44:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	msg_error(void)
 	ft_printf("p_im = -2.0 up to 2.0\n");
 	ft_printf("suger: -0.8 0.156\n");
 	ft_printf("3. BurningShip\n");
+	ft_printf("4. Tricorn\n");
 	return (0);
 }
 
@@ -35,6 +36,8 @@ int	check_fractal(char *str)
 		return (2);
 	else if (ft_strncmp(str, "BurningShip", 12) == 0)
 		return (3);
+	else if (ft_strncmp(str, "Tricorn", 7) == 0)
+		return (4);
 	else
 		return (0);
 }

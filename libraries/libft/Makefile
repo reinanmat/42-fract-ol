@@ -6,17 +6,17 @@
 #    By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 18:11:10 by revieira          #+#    #+#              #
-#    Updated: 2022/11/24 12:25:41 by revieira         ###   ########.fr        #
+#    Updated: 2022/11/30 17:26:32 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		=	libft.a
 
 INCLUDES 	=	includes/
-PATH_SRCS 	=	srcs/
-PATH_OBJS 	=	objs/
+PATH_SRCS 	=	sources/
+PATH_OBJS 	=	objects/
 
-SRCS 		= 	ft_atoi ft_isalnum ft_isalpha ft_isascii \
+FILES 		= 	ft_atoi ft_isalnum ft_isalpha ft_isascii \
 				ft_isdigit ft_isprint ft_tolower ft_toupper \
 				ft_strlen ft_strncmp ft_strdup ft_strlcat \
 				ft_strlcpy ft_strchr ft_strrchr ft_strnstr \
@@ -31,8 +31,8 @@ SRCS 		= 	ft_atoi ft_isalnum ft_isalpha ft_isascii \
 				ft_atof
 
 
-OBJS 		=	$(addprefix $(PATH_OBJS), $(addsuffix .o, $(SRCS) ) )
-FILES 		=	$(addsuffix .c, $(SRCS) ) 
+OBJS 		=	$(addprefix $(PATH_OBJS), $(addsuffix .o, $(FILES) ) )
+SRCS 		=	$(addsuffix .c, $(FILES) ) 
 CFLAGS 		=	-Wall -Werror -Wextra
 
 all : $(NAME)
