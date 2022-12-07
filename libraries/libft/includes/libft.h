@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 20:11:21 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/24 12:24:45 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:08:56 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_list
 }					t_list;
 
 int					ft_atoi(const char *str);
-double				ft_atof(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

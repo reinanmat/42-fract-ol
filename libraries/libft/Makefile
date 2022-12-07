@@ -6,7 +6,7 @@
 #    By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 18:11:10 by revieira          #+#    #+#              #
-#    Updated: 2022/11/30 17:26:32 by revieira         ###   ########.fr        #
+#    Updated: 2022/12/07 11:08:38 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,6 @@ FILES 		= 	ft_atoi ft_isalnum ft_isalpha ft_isascii \
 				ft_lstsize ft_lstlast ft_lstadd_back ft_lstdelone \
 				ft_lstclear ft_lstiter ft_lstmap get_next_line \
 				get_next_line_utils ft_printf ft_printf_utils \
-				ft_atof
-
 
 OBJS 		=	$(addprefix $(PATH_OBJS), $(addsuffix .o, $(FILES) ) )
 SRCS 		=	$(addsuffix .c, $(FILES) ) 

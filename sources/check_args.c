@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 18:44:25 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:00:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_fractal(char *str)
 
 int	check_julia(int argc, char **argv, t_fractol *f)
 {
-	if (argc < 3 || argc > 4)
+	if (argc != 4)
 		return (0);
 	f->arg_re = ft_atof(argv[2]);
 	if (f->arg_re < -2.0 || f->arg_re > 2.0)
@@ -71,10 +71,7 @@ int	check_args(int argc, char **argv, t_fractol *f)
 	f->fractal = check_fractal(argv[1]);
 	if (f->fractal == 0)
 		return (msg_error());
-	if (f->fractal == 2)
-	{
-		if (!(check_julia(argc, argv, f)))
-			return (msg_error());
-	}
+	if (f->fractal == 2 && !(check_julia(argc, argv, f)))
+		return (msg_error());
 	return (1);
 }
