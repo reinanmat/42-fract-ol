@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:41:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 18:11:10 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:20:57 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_mandelbrot(t_fractol *f)
 	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
 	f->max_iter = 100;
 	f->color = 0;
+	f->args = 0;
 }
 
 int	mandelbrot(double n_re, double n_im, t_fractol *f)

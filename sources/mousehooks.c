@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:24:16 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 18:46:39 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:20:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mouse(int x, int y, t_fractol *f)
 {
-	if (f->args == 0)
+	if (f->fractal == 2 && f->args == 0)
 	{
 		f->arg_re = map_re(x, f);
 		f->arg_im = map_im(y, f);
