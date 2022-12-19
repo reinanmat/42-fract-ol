@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mousehooks.c                                       :+:      :+:    :+:   */
+/*   mousehooks_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:24:16 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/08 16:20:40 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:29:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void	zoom(double zoom, char up_down, t_fractol *f)
+{
+	if (up_down == 'd')
+	{
+		f->min_re += (f->max_im - f->min_im) * zoom;
+		f->max_re -= (f->max_im - f->min_im) * zoom;
+		f->min_im += (f->max_re - f->min_re) * zoom;
+		f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	}
+	else if (up_down == 'u')
+	{
+		f->min_re -= (f->max_im - f->min_im) * zoom;
+		f->max_re += (f->max_im - f->min_im) * zoom;
+		f->min_im -= (f->max_re - f->min_re) * zoom;
+		f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	}
+}
 
 int	mouse(int x, int y, t_fractol *f)
 {
@@ -22,53 +40,50 @@ int	mouse(int x, int y, t_fractol *f)
 	return (0);
 }
 
-void	resize(double value, char direction, t_fractol *f)
+void	move_for_mouse(double value, char direction, t_fractol *f)
 {
-	t_aux	aux;
+	double	range_re;
+	double	range_im;
 
-	aux.range_re = f->max_re - f->min_re;
-	aux.range_im = f->max_im - f->min_im;
+	range_re = f->max_re - f->min_re;
+	range_im = f->max_im - f->min_im;
 	if (direction == 'r')
 	{
-		f->min_re += aux.range_re * value;
-		f->max_re += aux.range_re * value;
+		f->min_re += range_re * value;
+		f->max_re += range_re * value;
 	}
 	else if (direction == 'l')
 	{
-		f->min_re -= aux.range_re * value;
-		f->max_re -= aux.range_re * value;
+		f->min_re -= range_re * value;
+		f->max_re -= range_re * value;
 	}
 	else if (direction == 'u')
 	{
-		f->min_im -= aux.range_im * value;
-		f->max_im -= aux.range_im * value;
+		f->min_im -= range_im * value;
+		f->max_im -= range_im * value;
 	}
 	else if (direction == 'd')
 	{
-		f->min_im += aux.range_im * value;
-		f->max_im += aux.range_im * value;
+		f->min_im += range_im * value;
+		f->max_im += range_im * value;
 	}
 }
 
 int	mouse_zoom(int key, int x, int y, t_fractol *f)
 {
-	t_aux	aux;
-
-	aux.range_re = f->max_re - f->min_re;
-	aux.range_im = f->max_im - f->min_im;
 	if (key == 4)
 	{
 		zoom(0.1, 'd', f);
 		x -= WIDTH / 2;
 		y -= HEIGHT / 2;
 		if (x < 0)
-			resize(ft_fabs(x) / WIDTH, 'l', f);
+			move_for_mouse(ft_fabs(x) / WIDTH, 'l', f);
 		else if (x > 0)
-			resize(x / WIDTH, 'r', f);
+			move_for_mouse(x / WIDTH, 'r', f);
 		if (y < 0)
-			resize(ft_fabs(y) / HEIGHT, 'u', f);
+			move_for_mouse(ft_fabs(y) / HEIGHT, 'u', f);
 		else if (y > 0)
-			resize(y / HEIGHT, 'd', f);
+			move_for_mouse(y / HEIGHT, 'd', f);
 	}
 	if (key == 5)
 		zoom(0.1, 'u', f);

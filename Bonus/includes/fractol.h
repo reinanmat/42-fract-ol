@@ -6,19 +6,19 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/11/30 18:46:58 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:19:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../libraries/libft/includes/ft_printf.h"
-# include "../libraries/libft/includes/libft.h"
-# include "../libraries/minilibx-linux/mlx.h"
+# include "../../libraries/libft/includes/ft_printf.h"
+# include "../../libraries/libft/includes/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
+# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -33,14 +33,6 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }			t_img;
-
-typedef struct s_aux
-{
-	double	range_re;
-	double	range_im;
-	double	mouse_x;
-	double	mouse_y;
-}			t_aux;
 
 typedef struct s_fractol
 {
@@ -59,7 +51,6 @@ typedef struct s_fractol
 	double	arg_re;
 	double	arg_im;
 	t_img	img;
-	t_aux	aux;
 }			t_fractol;
 
 //check
@@ -89,12 +80,10 @@ int			tricorn(double n_re, double n_im, t_fractol *f);
 int			mouse(int x, int y, t_fractol *f);
 int			handle_input(int key, t_fractol *f);
 void		arrows(int key, t_fractol *f);
-void		key_zoom(int key, t_fractol *f);
 void		new_max_iter(int key, t_fractol *f);
 
 //draw
 int			render(t_fractol *f);
-void		set_color(int x, int y, int i, t_fractol *f);
 void		img_pix_put(t_img *img, int x, int y, int color);
 
 //colors
@@ -102,11 +91,13 @@ int			colors_set_1(int n);
 int			colors_set_2(int n);
 int			colors_set_3(int n);
 int			colors_set_4(int n);
+void		set_color(int x, int y, int i, t_fractol *f);
 
 //zoom
 void		zoom(double zoom, char up_down, t_fractol *f);
-void		resize(double value, char direction, t_fractol *f);
+void		move_for_mouse(double value, char direction, t_fractol *f);
 int			mouse_zoom(int key, int x, int y, t_fractol *f);
+void		key_zoom(int key, t_fractol *f);
 
 //utils
 int			ft_invert(int n);
