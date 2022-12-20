@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_mandelbrot.c                               :+:      :+:    :+:   */
+/*   fractal_mandelbrot_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:41:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/08 16:20:57 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:30:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_mandelbrot(t_fractol *f)
 {
-	f->min_re = -2.1;
-	f->max_re = 0.6;
-	f->min_im = -1.2;
+	f->min_re = -2.2;
+	f->max_re = 1.0;
+	f->min_im = -1.5;
 	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
 	f->max_iter = 100;
 	f->color = 0;

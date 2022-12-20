@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 18:54:39 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:27:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	key_zoom(int key, t_fractol *f)
 {
 	if (key == 'z')
 	{
-        f->min_re += (f->max_im - f->min_im) * 0.115;
-        f->max_re -= (f->max_im - f->min_im) * 0.115;
-        f->min_im += (f->max_re - f->min_re) * 0.115;
-        f->max_im = f->min_im + (f->max_re - f->min_re) * HEIGHT / WIDTH;
+		f->min_re -= f->min_re * 0.1;
+		f->max_re -= f->max_re * 0.1;
+		f->min_im -= f->min_im * 0.1;
+		f->max_im -= f->max_im * 0.1;
 	}
 	else if (key == 'x')
 	{
-        f->min_re -= (f->max_im - f->min_im) * 0.115;
-        f->max_re += (f->max_im - f->min_im) * 0.115;
-        f->min_im -= (f->max_re - f->min_re) * 0.115;
-        f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH;
+		f->min_re += f->min_re * 0.1;
+		f->max_re += f->max_re * 0.1;
+		f->min_im += f->min_im * 0.1;
+		f->max_im += f->max_im * 0.1;
 	}
 }
 
