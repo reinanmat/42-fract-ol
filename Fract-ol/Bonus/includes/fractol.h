@@ -6,16 +6,15 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 18:56:33 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:50:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../../libraries/libft/includes/ft_printf.h"
-# include "../../libraries/libft/includes/libft.h"
-# include <X11/X.h>
+# include "../../../Libft/includes/ft_printf.h"
+# include "../../../Libft/includes/libft.h"
 # include <X11/keysym.h>
 # include <math.h>
 # include <mlx.h>
@@ -43,10 +42,11 @@ typedef struct s_fractol
 	int		color;
 	double	x0;
 	double	y0;
-	float	min_re;
-	float	max_re;
-	float	min_im;
-	float	max_im;
+	double	min_re;
+	double	max_re;
+	double	min_im;
+	double	max_im;
+	int		args;
 	double	arg_re;
 	double	arg_im;
 	t_img	img;
@@ -63,6 +63,8 @@ int			init_data(t_fractol *fractol);
 void		init_fractal(t_fractol *f);
 void		init_julia(t_fractol *f);
 void		init_mandelbrot(t_fractol *f);
+void		init_burning_ship(t_fractol *f);
+void		init_tricorn(t_fractol *f);
 
 //fractal
 void		set_fractal(t_fractol *f);
@@ -70,22 +72,36 @@ double		map_re(int x, t_fractol *f);
 double		map_im(int y, t_fractol *f);
 int			julia(double n_re, double n_im, t_fractol *f);
 int			mandelbrot(double n_re, double n_im, t_fractol *f);
+int			burning_ship(double n_re, double n_im, t_fractol *f);
+int			tricorn(double n_re, double n_im, t_fractol *f);
 
 //hooks
 int			mouse(int x, int y, t_fractol *f);
 int			handle_input(int key, t_fractol *f);
-void		key_zoom(int key, t_fractol *f);
+void		arrows(int key, t_fractol *f);
 void		new_max_iter(int key, t_fractol *f);
 
 //draw
 int			render(t_fractol *f);
 void		img_pix_put(t_img *img, int x, int y, int color);
 
+//colors
+int			colors_set_1(int n);
+int			colors_set_2(int n);
+int			colors_set_3(int n);
+int			colors_set_4(int n);
+void		set_color(int x, int y, int i, t_fractol *f);
+
 //zoom
+void		zoom(double zoom, char up_down, t_fractol *f);
+void		move_for_mouse(double value, char direction, t_fractol *f);
 int			mouse_zoom(int key, int x, int y, t_fractol *f);
+void		key_zoom(int key, t_fractol *f);
 
 //utils
+int			ft_invert(int n);
 int			check_double(const char *str);
+double		ft_fabs(double n);
 double		ft_atof(const char *str);
 
 //close_program

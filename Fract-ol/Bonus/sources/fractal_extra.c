@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_extra_bonus.c                              :+:      :+:    :+:   */
+/*   fractal_extra.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 19:29:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 19:30:31 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:48:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_burning_ship(t_fractol *f)
 	f->min_im = -2.0;
 	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
 	f->max_iter = 100;
-	f->color = 0;
+	f->color = 4;
 	f->args = 0;
 }
 
@@ -52,7 +52,7 @@ void	init_tricorn(t_fractol *f)
 	f->min_im = -2.0;
 	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
 	f->max_iter = 100;
-	f->color = 0;
+	f->color = 2;
 	f->args = 0;
 }
 

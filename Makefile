@@ -6,42 +6,38 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/12/19 19:31:31 by revieira         ###   ########.fr        #
+#    Updated: 2022/12/20 17:01:03 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 BONUS = fractol_bonus
 
-PATH_SRCS		= ./Mandatory/sources/
-PATH_OBJS		= ./Mandatory/objects/
-PATH_INCS		= ./Mandatory/includes/
-PATH_BONUS_SRCS	= ./Bonus/sources/
-PATH_BONUS_OBJS = ./Bonus/objects/
-PATH_BONUS_INCS = ./Bonus/includes/
+PATH_SRCS		= ./Fract-ol/Mandatory/sources/
+PATH_OBJS		= ./Fract-ol/Mandatory/objects/
+PATH_INCS		= ./Fract-ol/Mandatory/includes/
+PATH_BONUS_SRCS	= ./Fract-ol/Bonus/sources/
+PATH_BONUS_OBJS = ./Fract-ol/Bonus/objects/
+PATH_BONUS_INCS = ./Fract-ol/Bonus/includes/
 
-FILES 			= init set_fractal fractal_julia fractal_mandelbrot draw \
-				  keyhooks check_args main close_program mousehooks utils
+FILES 			= init fractal_julia fractal_mandelbrot render keyhooks \
+				  check_args main close_program mousehooks utils
 
-BONUS_FILES 	= init_bonus set_fractal_bonus fractal_julia_bonus \
-				  fractal_mandelbrot_bonus draw_bonus keyhooks_bonus \
-				  check_args_bonus colors_bonus close_program_bonus \
-				  fractal_extra_bonus mousehooks_bonus utils_bonus \
-				  main_bonus
+BONUS_FILES 	= $(FILES) fractal_extra colors
 
 OBJS 			= $(addprefix $(PATH_OBJS), $(addsuffix .o, $(FILES) ) )
 SRCS 			= $(addprefix $(PATH_SRCS), $(addsuffix .c, $(FILES) ) )
 BONUS_SRCS		= $(addprefix $(PATH_BONUS_SRCS), $(addsuffix .c, $(BONUS_FILES) ) ) 
 BONUS_OBJS		= $(addprefix $(PATH_BONUS_OBJS), $(addsuffix .o, $(BONUS_FILES) ) ) 
 
-PATH_LIBFT 		= ./libraries/libft/
-PATH_LIBX		= ./libraries/minilibx-linux/
-INCLUDES 		= -I $(PATH_INCS) -I $(PATH_LIBFT)
-BONUS_INCLUDES	= -I $(PATH_BONUS_INCS) -I $(PATH_LIBFT)
+PATH_LIBFT 		= ./Libft/
+PATH_INCS_LIBFT = $(PATH_LIBFT)includes/
+INCLUDES 		= -I $(PATH_INCS) -I $(PATH_INCS_LIBFT)
+BONUS_INCLUDES	= -I $(PATH_BONUS_INCS) -I $(PATH_INCS_LIBFT)
 
-CFLAGS 			= -Wall -Wextra -Werror
+CFLAGS 			= -Wall -Wextra -Werror -O3
 LIBFTFLAGS 		= -L $(PATH_LIBFT) -lft
-LIBXFLAGS 		= -L $(PATH_LIBX) -lmlx -lXext -lX11 -lm -lz
+LIBXFLAGS 		= -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 

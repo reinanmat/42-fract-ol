@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_fractal_bonus.c                                :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 16:52:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 12:54:55 by revieira         ###   ########.fr       */
+/*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
+/*   Updated: 2022/12/20 16:28:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void	img_pix_put(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(int *)pixel = color;
+}
 
 double	map_re(int x, t_fractol *f)
 {
@@ -51,4 +59,12 @@ void	set_fractal(t_fractol *f)
 			set_color(x, y, iter, f);
 		}
 	}
+}
+
+int	render(t_fractol *f)
+{
+	mlx_clear_window(f->mlx_ptr, f->win_ptr);
+	set_fractal(f);
+	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img.mlx_img, 0, 0);
+	return (1);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_bonus.c                                     :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:52:57 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 16:34:56 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:39:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ int	colors_set_1(int n)
 
 	color = 0;
 	if (n % 8 == 7)
-		color = 0x0225D1;
+		color = 0x0000FF;
 	else if (n % 8 == 6)
-		color = 0x0220B8;
+		color = 0x00FF00;
 	else if (n % 8 == 5)
-		color = 0x011161;
+		color = 0x00FFFF;
 	else if (n % 8 == 4)
-		color = 0x0227DE;
+		color = 0xFF0000;
 	else if (n % 8 == 3)
-		color = 0x011991;
+		color = 0xFF00FF;
 	else if (n % 8 == 2)
-		color = 0x0225D1;
+		color = 0xFFFF00;
 	else if (n % 8 == 1)
-		color = 0x011161;
+		color = 0xFFFFFF;
 	else if (n % 8 == 0)
-		color = 0x010A38;
+		color = 0x000000;
 	return (color);
 }
 
@@ -42,21 +42,21 @@ int	colors_set_2(int n)
 
 	color = 0;
 	if (n % 8 == 7)
-		color = 0x827872;
+		color = 0x0000FF;
 	else if (n % 8 == 6)
-		color = 0xCFC5C0;
+		color = 0x0000AA;
 	else if (n % 8 == 5)
-		color = 0xCACCCE;
+		color = 0x000055;
 	else if (n % 8 == 4)
-		color = 0x827F72;
+		color = 0x000000;
 	else if (n % 8 == 3)
-		color = 0xCFCBBA;
+		color = 0x550000;
 	else if (n % 8 == 2)
-		color = 0xFFFFFF;
+		color = 0xAA0000;
 	else if (n % 8 == 1)
-		color = 0xCFCBBA;
+		color = 0xFF0000;
 	else if (n % 8 == 0)
-		color = 0x66645C;
+		color = 0xFFFFFF;
 	return (color);
 }
 
@@ -66,21 +66,21 @@ int	colors_set_3(int n)
 
 	color = 0;
 	if (n % 8 == 7)
-		color = 0x8A02CF;
+		color = 0x000000;
 	else if (n % 8 == 6)
-		color = 0x9302D8;
+		color = 0x111111;
 	else if (n % 8 == 5)
-		color = 0x7902B5;
+		color = 0x222222;
 	else if (n % 8 == 4)
-		color = 0x60018F;
+		color = 0x333333;
 	else if (n % 8 == 3)
-		color = 0x3D015C;
+		color = 0x444444;
 	else if (n % 8 == 2)
-		color = 0x60018F;
+		color = 0x555555;
 	else if (n % 8 == 1)
-		color = 0x8A02CF;
+		color = 0x666666;
 	else if (n % 8 == 0)
-		color = 0x9302D8;
+		color = 0x777777;
 	return (color);
 }
 
@@ -90,21 +90,21 @@ int	colors_set_4(int n)
 
 	color = 0;
 	if (n % 8 == 7)
-		color = 0xD10E03;
+		color = 0xff5232;
 	else if (n % 8 == 6)
-		color = 0xDE0D02;
+		color = 0xFF0000;
 	else if (n % 8 == 5)
-		color = 0xB80B02;
+		color = 0xd11507;
 	else if (n % 8 == 4)
-		color = 0xDE0D02;
+		color = 0xa51b0b;
 	else if (n % 8 == 3)
-		color = 0x5E0601;
+		color = 0x7a1b0c;
 	else if (n % 8 == 2)
-		color = 0x910901;
+		color = 0x52170b;
 	else if (n % 8 == 1)
-		color = 0xB80B02;
+		color = 0x2d1106;
 	else if (n % 8 == 0)
-		color = 0x5e0601;
+		color = 0x000000;
 	return (color);
 }
 
@@ -115,24 +115,15 @@ void	set_color(int x, int y, int i, t_fractol *f)
 	color = 0;
 	if (i == f->max_iter)
 		color = 0x000000;
-	else
-	{
-		if (f->color == 0)
-			color = i * i * 265;
-		else if (f->color == 1)
-			color = i * 285;
-		else if (f->color == 2)
-			color = i * 300;
-		else if (f->color == 3)
-			color = i * 265265;
-		else if (f->color == 4)
-			color = colors_set_1(i);
-		else if (f->color == 5)
-			color = colors_set_2(i);
-		else if (f->color == 6)
-			color = colors_set_3(i);
-		else if (f->color == 7)
-			color = colors_set_4(i);
-	}
+	else if (f->color == 0)
+		color = 265 * i;
+	else if (f->color == 1)
+		color = colors_set_1(i);
+	else if (f->color == 2)
+		color = colors_set_2(i);
+	else if (f->color == 3)
+		color = colors_set_3(i);
+	else if (f->color == 4)
+		color = colors_set_4(i);
 	img_pix_put(&f->img, x, y, color);
 }
