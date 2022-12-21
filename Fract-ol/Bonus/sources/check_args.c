@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args_bonus.c                                 :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:05:18 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 14:31:11 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:17:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	msg_error(void)
 	ft_printf("[p_im] the imaginary part of the parameter\n");
 	ft_printf("p_re = -2.0 up to 2.0\n");
 	ft_printf("p_im = -2.0 up to 2.0\n");
-	ft_printf("suger: -0.8 0.156\n");
+	ft_printf("suger: -0.8 0.156 | -0.4 0.6 | 0.285 0 | 0.45 0.1428\n");
 	ft_printf("3. BurningShip\n");
 	ft_printf("4. Tricorn\n");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 17:52:01 by revieira         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:25:42 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../../../Libft/includes/ft_printf.h"
 # include "../../../Libft/includes/libft.h"
 # include <X11/keysym.h>
-# include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -51,43 +50,34 @@ typedef struct s_fractol
 	t_img	img;
 }			t_fractol;
 
-//check
 int			check_args(int argc, char **argv, t_fractol *f);
 int			check_fractal(char *str);
 int			check_julia(int argc, char **argv, t_fractol *f);
 int			msg_error(void);
 
-//init
 int			init_data(t_fractol *fractol);
 void		init_fractal(t_fractol *f);
 void		init_julia(t_fractol *f);
 void		init_mandelbrot(t_fractol *f);
 
-//fractal
 void		set_fractal(t_fractol *f);
 double		map_re(int x, t_fractol *f);
 double		map_im(int y, t_fractol *f);
 int			julia(double n_re, double n_im, t_fractol *f);
 int			mandelbrot(double n_re, double n_im, t_fractol *f);
 
-//hooks
 int			mouse(int x, int y, t_fractol *f);
 int			handle_input(int key, t_fractol *f);
 void		key_zoom(int key, t_fractol *f);
 void		new_max_iter(int key, t_fractol *f);
+int			mouse_zoom(int key, int x, int y, t_fractol *f);
 
-//draw
 int			render(t_fractol *f);
 void		img_pix_put(t_img *img, int x, int y, int color);
 
-//zoom
-int			mouse_zoom(int key, int x, int y, t_fractol *f);
-
-//utils
 int			check_double(const char *str);
 double		ft_atof(const char *str);
 
-//close_program
 int			close_program(t_fractol *f);
 
 #endif
