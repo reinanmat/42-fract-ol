@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 16:38:52 by revieira         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:29:43 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	set_fractal(t_fractol *f)
 	int		iter;
 
 	x = -1;
+	iter = 0;
 	while (++x < WIDTH)
 	{
 		y = -1;
