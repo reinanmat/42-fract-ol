@@ -6,19 +6,19 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2022/12/20 17:01:03 by revieira         ###   ########.fr        #
+#    Updated: 2023/09/01 21:30:19 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 BONUS = fractol_bonus
 
-PATH_SRCS		= ./Fract-ol/Mandatory/sources/
-PATH_OBJS		= ./Fract-ol/Mandatory/objects/
-PATH_INCS		= ./Fract-ol/Mandatory/includes/
-PATH_BONUS_SRCS	= ./Fract-ol/Bonus/sources/
-PATH_BONUS_OBJS = ./Fract-ol/Bonus/objects/
-PATH_BONUS_INCS = ./Fract-ol/Bonus/includes/
+PATH_SRCS		= ./sources/
+PATH_OBJS		= ./objects/
+PATH_INCS		= ./includes/
+PATH_BONUS_SRCS	= ./bonus/sources/
+PATH_BONUS_OBJS = ./objects/bonus/
+PATH_BONUS_INCS = ./bonus/includes/
 
 FILES 			= init fractal_julia fractal_mandelbrot render keyhooks \
 				  check_args main close_program mousehooks utils
@@ -30,7 +30,7 @@ SRCS 			= $(addprefix $(PATH_SRCS), $(addsuffix .c, $(FILES) ) )
 BONUS_SRCS		= $(addprefix $(PATH_BONUS_SRCS), $(addsuffix .c, $(BONUS_FILES) ) ) 
 BONUS_OBJS		= $(addprefix $(PATH_BONUS_OBJS), $(addsuffix .o, $(BONUS_FILES) ) ) 
 
-PATH_LIBFT 		= ./Libft/
+PATH_LIBFT 		= ./libft/
 PATH_INCS_LIBFT = $(PATH_LIBFT)includes/
 INCLUDES 		= -I $(PATH_INCS) -I $(PATH_INCS_LIBFT)
 BONUS_INCLUDES	= -I $(PATH_BONUS_INCS) -I $(PATH_INCS_LIBFT)
@@ -64,7 +64,6 @@ $(PATH_BONUS_OBJS)%.o: $(PATH_BONUS_SRCS)%.c
 	cc $(CFLAGS) $(BONUS_INCLUDES) -c $< -o $@
 
 clean:	
-	rm -f $(OBJS) $(BONUS_OBJS)
 	rm -rf $(PATH_OBJS) $(PATH_BONUS_OBJS)
 	make clean -C $(PATH_LIBFT) --no-print-directory
 
