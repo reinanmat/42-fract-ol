@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:42:29 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 12:51:00 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:00:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 void	init_julia(t_fractol *f)
 {

@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:41:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 18:55:01 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:00:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 void	init_mandelbrot(t_fractol *f)
 {

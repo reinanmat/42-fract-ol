@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 12:46:41 by revieira          #+#    #+#             */
-/*   Updated: 2023/03/03 16:29:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:01:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {

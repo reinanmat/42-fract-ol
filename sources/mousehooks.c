@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:24:16 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 12:27:43 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:01:09 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 int	mouse_zoom(int key, int x, int y, t_fractol *f)
 {
