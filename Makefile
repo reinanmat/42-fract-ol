@@ -6,7 +6,7 @@
 #    By: revieira <revieira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 13:10:26 by revieira          #+#    #+#              #
-#    Updated: 2023/09/01 21:30:19 by revieira         ###   ########.fr        #
+#    Updated: 2023/09/01 21:55:44 by revieira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ PATH_BONUS_INCS = ./bonus/includes/
 FILES 			= init fractal_julia fractal_mandelbrot render keyhooks \
 				  check_args main close_program mousehooks utils
 
-BONUS_FILES 	= $(FILES) fractal_extra colors
+BONUS_FILES 	= ${FILES:%=%_bonus} fractal_extra_bonus colors_bonus
 
 OBJS 			= $(addprefix $(PATH_OBJS), $(addsuffix .o, $(FILES) ) )
 SRCS 			= $(addprefix $(PATH_SRCS), $(addsuffix .c, $(FILES) ) )

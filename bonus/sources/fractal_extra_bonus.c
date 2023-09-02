@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_mandelbrot_bonus.c                         :+:      :+:    :+:   */
+/*   fractal_extra_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 14:41:09 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/20 12:30:08 by revieira         ###   ########.fr       */
+/*   Created: 2022/12/19 19:29:56 by revieira          #+#    #+#             */
+/*   Updated: 2023/09/01 21:51:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol_bonus.h"
 
-void	init_mandelbrot(t_fractol *f)
+void	init_burning_ship(t_fractol *f)
 {
-	f->min_re = -2.2;
+	f->min_re = -2.0;
 	f->max_re = 1.0;
-	f->min_im = -1.5;
+	f->min_im = -2.0;
 	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
 	f->max_iter = 100;
-	f->color = 0;
+	f->color = 4;
 	f->args = 0;
 }
 
-int	mandelbrot(double n_re, double n_im, t_fractol *f)
+int	burning_ship(double n_re, double n_im, t_fractol *fractol)
 {
 	double	xx;
 	double	yy;
@@ -33,10 +33,43 @@ int	mandelbrot(double n_re, double n_im, t_fractol *f)
 	xx = 0;
 	yy = 0;
 	iter = 0;
+	while (iter < fractol->max_iter)
+	{
+		temp = xx * xx - yy * yy + n_re;
+		yy = ft_fabs(2 * xx * yy) + n_im;
+		xx = temp;
+		if (xx * xx + yy * yy > 4)
+			return (iter);
+		iter++;
+	}
+	return (iter);
+}
+
+void	init_tricorn(t_fractol *f)
+{
+	f->min_re = -2.1;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = (f->max_re - f->min_re) * HEIGHT / WIDTH + f->min_im;
+	f->max_iter = 100;
+	f->color = 2;
+	f->args = 0;
+}
+
+int	tricorn(double n_re, double n_im, t_fractol *f)
+{
+	double	xx;
+	double	yy;
+	double	temp;
+	int		iter;
+
+	xx = n_re;
+	yy = n_im;
+	iter = 0;
 	while (iter < f->max_iter)
 	{
 		temp = xx * xx - yy * yy + n_re;
-		yy = 2 * xx * yy + n_im;
+		yy = -2 * xx * yy + n_im;
 		xx = temp;
 		if (xx * xx + yy * yy > 4)
 			return (iter);

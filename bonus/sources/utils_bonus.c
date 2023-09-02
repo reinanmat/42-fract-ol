@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:07:46 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 17:59:47 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:53:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol_bonus.h"
 
 int	ft_invert(int i)
 {

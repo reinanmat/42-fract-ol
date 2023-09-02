@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:08:00 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 14:31:26 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:51:19 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol_bonus.h"
 
 int	close_program(t_fractol *f)
 {

@@ -6,11 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 12:24:16 by revieira          #+#    #+#             */
-/*   Updated: 2022/12/19 19:29:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 21:52:36 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol_bonus.h"
 
 void	zoom(double zoom, char up_down, t_fractol *f)
 {
