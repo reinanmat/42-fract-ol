@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:03:46 by revieira          #+#    #+#             */
-/*   Updated: 2023/09/01 21:52:23 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:35:35 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	handle_input(int key, t_fractol *f)
 	if (key == 'a' || key == 'd')
 		new_max_iter(key, f);
 	else if (key == 's' && f->fractal == 2)
-		f->args = ft_invert(f->args);
+		f->args = !f->args;
 	else if (key == 'z' || key == 'x')
 		key_zoom(key, f);
 	arrows(key, f);

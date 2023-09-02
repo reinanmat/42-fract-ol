@@ -6,7 +6,7 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:03:56 by revieira          #+#    #+#             */
-/*   Updated: 2023/09/01 21:50:24 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:36:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int			colors_set_2(int n);
 int			colors_set_3(int n);
 int			colors_set_4(int n);
 
-int			ft_invert(int n);
 int			check_double(const char *str);
 double		ft_fabs(double n);
 double		ft_atof(const char *str);

@@ -6,18 +6,11 @@
 /*   By: revieira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:07:46 by revieira          #+#    #+#             */
-/*   Updated: 2023/09/01 21:53:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:35:02 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
-
-int	ft_invert(int i)
-{
-	if (!i)
-		return (1);
-	return (0);
-}
 
 int	check_double(const char *str)
 {
